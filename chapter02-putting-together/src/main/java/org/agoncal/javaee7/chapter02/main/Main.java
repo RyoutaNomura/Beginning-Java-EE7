@@ -9,17 +9,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		Weld weld = new Weld();
-		for (int i=0;i<100;i++) {
+//		for (int i=0;i<100;i++) {
 			WeldContainer container = weld.initialize();
 
 			BookService bookService = container.instance().select(BookService.class).get();
 
-			Book book = bookService.createBook("No Longer Human", 10.13f, String.valueOf(i));
-
-			System.out.println(book);
+			Book book = bookService.createBook("No Longer Human", 10.13f, String.valueOf(0));
 
 			weld.shutdown();
-		}
+//		}
 	}
 
 }

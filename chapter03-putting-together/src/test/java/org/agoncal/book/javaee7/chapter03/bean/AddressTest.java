@@ -1,3 +1,4 @@
+package org.agoncal.book.javaee7.chapter03.bean;
 import static org.junit.Assert.*;
 
 import java.util.Set;
@@ -7,9 +8,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.agoncal.book.javaee7.chapter03.bean.Address;
 import org.junit.Test;
-
-import bean.Address;
 
 public class AddressTest {
 	@Test

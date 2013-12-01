@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.agoncal.book.javaee7.chapter02</groupId>
+	<groupId>org.agoncal.book.javaee7.chapter03</groupId>
 	<artifactId>chapter03-putting-together</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>

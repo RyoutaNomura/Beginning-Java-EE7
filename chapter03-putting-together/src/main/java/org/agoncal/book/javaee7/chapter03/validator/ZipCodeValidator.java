@@ -1,4 +1,4 @@
-package validator;
+package org.agoncal.book.javaee7.chapter03.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,11 +7,10 @@ import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.agoncal.book.javaee7.chapter03.annotation.USA;
+import org.agoncal.book.javaee7.chapter03.annotation.ZipCode;
+import org.agoncal.book.javaee7.chapter03.validator.zipcode.ZipCodeChecker;
 import org.apache.commons.lang3.StringUtils;
-
-import validator.zipcode.ZipCodeChecker;
-import annotation.USA;
-import annotation.ZipCode;
 
 public class ZipCodeValidator implements ConstraintValidator<ZipCode, String> {
 

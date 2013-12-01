@@ -1,3 +1,4 @@
+package org.agoncal.book.javaee7.chapter03.bean;
 import static org.junit.Assert.*;
 
 import java.util.Set;
@@ -7,11 +8,12 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.agoncal.book.javaee7.chapter03.bean.Customer;
+import org.jboss.weld.environment.se.Weld;
+import org.jboss.weld.environment.se.WeldContainer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import bean.Customer;
 
 public class CustomerTest {
 
@@ -46,9 +48,31 @@ public class CustomerTest {
 		assertEquals("{org.agoncal.book.javaee7.Email.message}",violations.iterator().next().getMessageTemplate());
 	}
 
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void shouldRaiseConstraintViolationCauseNullFirstName() {
-		Customer customer = new Customer();
-		customer.setFirstName(null);
+		Weld weld = new Weld();
+		WeldContainer container = weld.initialize();
+
+		try {
+			Customer customer = container.instance().select(Customer.class).get();
+			customer.setFirstName(null);
+		} finally {
+			weld.shutdown();
+		}
+	}
+
+	@Test
+	public void canSetNotNullValueToFirstName() {
+		Weld weld = new Weld();
+		WeldContainer container = weld.initialize();
+
+		try {
+			Customer customer = container.instance().select(Customer.class).get();
+			String expected = "FirstName";
+			customer.setFirstName(expected);
+			assertEquals(expected, customer.getFirstName());
+		} finally {
+			weld.shutdown();
+		}
 	}
 }

@@ -1,15 +1,14 @@
-package bean;
+package org.agoncal.book.javaee7.chapter03.bean;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.agoncal.book.javaee7.chapter03.annotation.Email;
+import org.agoncal.book.javaee7.chapter03.annotation.Validatable;
 
-import annotation.Email;
-
-
+@Validatable
 public class Customer {
 	@NotNull @Size(min=2)
 	private String firstName;
@@ -31,6 +30,7 @@ public class Customer {
 	public String getFirstName() {
 		return this.firstName;
 	}
+	@Validatable
 	public void setFirstName(@NotNull String firstName) {
 		this.firstName = firstName;
 	}

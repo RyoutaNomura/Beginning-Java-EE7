@@ -1,4 +1,4 @@
- package validator.zipcode;
+ package org.agoncal.book.javaee7.chapter03.validator.zipcode;
 
 public interface ZipCodeChecker {
 

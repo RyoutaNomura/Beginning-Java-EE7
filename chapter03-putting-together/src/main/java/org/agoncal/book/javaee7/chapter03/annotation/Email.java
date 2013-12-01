@@ -1,4 +1,4 @@
-package annotation;
+package org.agoncal.book.javaee7.chapter03.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
