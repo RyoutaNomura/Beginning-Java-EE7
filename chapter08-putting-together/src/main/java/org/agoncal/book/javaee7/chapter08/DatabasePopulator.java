@@ -2,13 +2,19 @@ package org.agoncal.book.javaee7.chapter08;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 
 @Singleton
 @Startup
-//@DataSourceDefinition(className = "org.apache.derby.jdbc.EmbeddedDataSource", name = "java:global/jdbc/chapter08DS", user = "app", password = "app", databaseName = "chapter08DB", properties = { "connectionAttributes=;create=true" })
+@DataSourceDefinition(className = "org.apache.derby.jdbc.EmbeddedDataSource",
+	name = "java:global/jdbc/chapter08DS",
+	user = "app",
+	password = "app",
+	databaseName = "chapter08DB",
+	properties = { "connectionAttributes=;create=true" })
 public class DatabasePopulator {
 
 	@Inject

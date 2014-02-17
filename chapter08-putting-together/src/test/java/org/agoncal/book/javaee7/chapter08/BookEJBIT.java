@@ -1,6 +1,8 @@
 package org.agoncal.book.javaee7.chapter08;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.util.HashMap;
@@ -13,12 +15,34 @@ import javax.naming.NamingException;
 import org.junit.Test;
 
 public class BookEJBIT {
-
+//	private GlassFish glassfish = null;
+//	@Before
+//	public void before() {
+//		GlassFishProperties glassfishProperties = new GlassFishProperties();
+//		try {
+//			glassfish = GlassFishRuntime.bootstrap().newGlassFish(glassfishProperties);
+//			glassfish.start();
+//		} catch (GlassFishException e) {
+//			// TODO 自動生成された catch ブロック
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	public void after() {
+//		try {
+//			glassfish.stop();
+//			glassfish.dispose();
+//		} catch (GlassFishException e) {
+//			// TODO 自動生成された catch ブロック
+//			e.printStackTrace();
+//		}
+//	}
 	@Test
 	public void shouldCreateABook() {
 
 		Map<String, Object> properties = new HashMap<>();
-		properties.put(EJBContainer.MODULES, new File("target/classes"));
+		properties.put(EJBContainer.MODULES, new File[] {
+				new File("target/test-classes"), new File("target/classes")});
 
 		try (EJBContainer ec = EJBContainer.createEJBContainer(properties)) {
 			Context ctx = ec.getContext();
@@ -41,8 +65,8 @@ public class BookEJBIT {
 			assertEquals(2, bookEJB.findBooks().size());
 
 		} catch (NamingException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+			fail();
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package org.agoncal.book.javaee7.chapter08;
+package org.agoncal.book.javaee7.chapter11;
 
 import java.io.Serializable;
 
@@ -13,8 +13,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name="findAllBooks", query="SELECT b FROM Book b"),
-@NamedQuery(name="findBookH2G2", query="SELECT b FROM Book b WHERE b.title='H2G2'" )
+@NamedQuery(name="findAllBooks", query="SELECT b FROM Book b")
 })
 public class Book implements Serializable {
 
@@ -27,8 +26,7 @@ public class Book implements Serializable {
 
 	@Id @GeneratedValue
 	private long id;
-
-	@NotNull @Column(nullable=false)
+	@NotNull @Size(min=4, max=50) @Column(nullable=false)
 	private String title;
 	private Float price;
 	@Size(max=2000)	@Column(length=2000)
