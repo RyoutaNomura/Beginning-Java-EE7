@@ -7,7 +7,11 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 
 @Named
@@ -21,12 +25,19 @@ public class BookEJB {
 	private EntityManager em;
 
 	public List<Book> findAllBooks() {
-		TypedQuery<Book> query = em.createNamedQuery(Book.FIND_ALL, Book.class);
-		return query.getResultList();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Book> criteriaQuery = builder.createQuery(Book.class);
+		Root<Book> c = criteriaQuery.from(Book.class);
+		criteriaQuery.select(c);
+		return em.createQuery(criteriaQuery).getResultList();
 	}
 
 	public Book findBookById(Long id) {
-		return em.find(Book.class, id);
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Book> criteriaQuery = builder.createQuery(Book.class);
+		Root<Book> c = criteriaQuery.from(Book.class);
+		criteriaQuery.select(c).where(builder.equal(c.get(Book_.id), id));
+		return em.createQuery(criteriaQuery).getResultList().get(0);
 	}
 
 	public @NotNull Book createBook(@NotNull Book book) {
